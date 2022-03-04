@@ -1,10 +1,10 @@
-# Octopus Monitor
+# Octopus Report
 
- Octopus Monitor periodically executes health checks on an Octopus Deploy server.
+ Octopus Report runs audit reports against an Octopus Deploy server.
 
 ## Requirements
 
-### Go 1.15.8
+### Go 1.17.3
 
 [Download Go](https://golang.org/dl/)
 
@@ -15,7 +15,6 @@ Requires two environment variables pointing to the Octopus Deploy server.
 ```bash
 export OCTOMON_OCTOPUS_ADDRESS=https://samples.octopus.app
 export OCTOMON_OCTOPUS_APIKEY=API-GUEST
-export OCTOMON_HEALTHCHECK_INTERVAL=10s
 go run main.go
 ```
 
