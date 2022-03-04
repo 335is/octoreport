@@ -35,16 +35,17 @@ func main() {
 	ver := flag.Bool("ver", false, "display the Octopus server version information")
 	flag.Parse()
 
-	c := config.New()
-	octo := octopus.New(c.Octopus.Address, c.Octopus.APIKey, &http.Client{})
-
 	if *info {
 		DoInformation()
 	}
 
+	c := config.New()
+
 	if *cfg {
 		DoConfiguration(c)
 	}
+
+	octo := octopus.New(c.Octopus.Address, c.Octopus.APIKey, &http.Client{})
 
 	if *ver {
 		DoVersionReport(octo)
