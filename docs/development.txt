@@ -1,0 +1,23 @@
+These are my notes while developing this program.
+
+Run
+    set OCTOMON_OCTOPUS_ADDRESS=https://demo_octopusdeploy.com
+    set OCTOMON_OCTOPUS_APIKEY=API-GUEST
+    set OCTOMON_HEALTHCHECK_INTERVAL=10s
+    go run main.go
+
+Build executable
+    go build -v
+
+Code analysis
+    go vet -v ./...
+
+Unit tests with code coverage
+    go test -v ./... -cover
+
+Code Coverage
+    go test -v ./... -coverprofile=coverage.out
+    go tool cover -html=coverage.out
+
+Run Specific Unit Test in a Specific Package
+    go test -v -run TestStop ./internal/health
