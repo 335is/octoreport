@@ -24,15 +24,14 @@ go run main.go
 export LOG_LEVEL=Debug
 ```
 
-## Example Octopus Deploy Server
-
-[Demo Octopus Deploy](https://samples.octopus.app)
-
-username: guest
-
-password: guest
-
-API key: API-GUEST
+### Command Line Options
+| Option   | Description |
+| -------- | ----------- |
+| -access  | generate a report of all Octopus users and all their members |
+| -config  | display configuration loaded |
+| -info    | display information about this program |
+| -teams   | generate a report of all Octopus teams and their users |
+| -ver     | display the Octopus server version information |
 
 ## API Documentation
 
@@ -41,6 +40,17 @@ API key: API-GUEST
 [Octopus REST API](https://octopus.com/docs/api-and-integration/api)
 
 [Octopus Deploy API](https://github.com/OctopusDeploy/OctopusDeploy-Api/wiki)
+
+## Public Sample Octopus Deploy Server
+
+[Demo Octopus Deploy](https://samples.octopus.app)
+
+The following credentials are needed
+| Name     | Value |
+| -------- | ----- |
+| username | guest |
+| password | guest |
+| API key  | API-GUEST |
 
 ## Example API Calls
 
