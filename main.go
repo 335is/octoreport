@@ -27,18 +27,24 @@ func init() {
 }
 
 func main() {
-	// log.Infof("Starting %s %s %s LOG_LEVEL=%s", appName, appVersion, appInstance, log.GetLevel().String())
-
 	// command line flags
 	access := flag.Bool("access", false, "generate a report of all Octopus users and all their members")
+	cfg := flag.Bool("config", false, "display configuration loaded")
+	info := flag.Bool("info", false, "display information about this program")
 	teams := flag.Bool("teams", false, "generate a report of all Octopus teams and their users")
 	ver := flag.Bool("ver", false, "display the Octopus server version information")
 	flag.Parse()
 
-	cfg := config.New()
-	// log.Debugf("Config settings: " + cfg.Dump())
+	c := config.New()
+	octo := octopus.New(c.Octopus.Address, c.Octopus.APIKey, &http.Client{})
 
-	octo := octopus.New(cfg.Octopus.Address, cfg.Octopus.APIKey, &http.Client{})
+	if *info {
+		DoInformation()
+	}
+
+	if *cfg {
+		DoConfiguration(c)
+	}
 
 	if *ver {
 		DoVersionReport(octo)
@@ -51,6 +57,14 @@ func main() {
 	if *access {
 		DoAccessReport(octo)
 	}
+}
+
+func DoInformation() {
+	fmt.Printf("%s %s %s LOG_LEVEL=%s\n", appName, appVersion, appInstance, log.GetLevel().String())
+}
+
+func DoConfiguration(cfg *config.Config) {
+	fmt.Println(cfg.Dump())
 }
 
 func DoVersionReport(octo *octopus.Client) {
