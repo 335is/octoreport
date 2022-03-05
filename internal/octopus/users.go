@@ -2,7 +2,6 @@ package octopus
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // Users holds metrics on the deployment tasks
@@ -11,7 +10,7 @@ type Users struct {
 	PagedResults PagedResults
 }
 
-// Task describes a deployment task, either running or not
+// User describes a deployment task, either running or not
 type User struct {
 	ID                  string `json:"Id"`
 	Username            string `json:"Username"`
@@ -23,25 +22,18 @@ type User struct {
 	IsRequestor         bool   `json:"IsRequestor"`
 }
 
-// GetUsers gets list of Octopus users
-func (c *Client) GetUsers() (*Users, error) {
-	resp, err := c.DoGetRequest("users")
+// GetUsers gets all Octopus users
+func (c *Client) GetAllUsers() (*[]User, error) {
+	resp, err := c.DoGetRequest("users/all")
 	if err != nil {
 		return nil, err
 	}
 
-	users := Users{}
+	users := []User{}
 	err = json.NewDecoder(resp.Body).Decode(&users)
 	if err != nil {
 		return nil, err
 	}
 
 	return &users, nil
-}
-
-func (users *Users) Print() {
-	for _, u := range users.Items {
-		fmt.Println("Id             : ", u.ID)
-		fmt.Println("Name           : ", u.Username)
-	}
 }

@@ -3,5 +3,3 @@
 octopus:
    address: https://samples.octopus.app
    apikey: API-GUEST
-   # address: http://localhost:8888/
-   # apikey: API-XXFXIJUGACOAAFSY70SGSDEIPEGSNRVL

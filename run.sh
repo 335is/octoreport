@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# export OCTOMON_OCTOPUS_ADDRESS=https://demo.octopusdeploy.com
-# export OCTOMON_OCTOPUS_APIKEY=API-GUEST
-export OCTOMON_OCTOPUS_ADDRESS=http://localhost:8888/
-export OCTOMON_OCTOPUS_APIKEY=API-XXFXIJUGACOAAFSY70SGSDEIPEGSNRVL
-go run main.go
-
+export OCTOPUS_ADDRESS=https://samples.octopus.app
+export OCTOPUS_APIKEY=API-GUEST
+go run main.go -config

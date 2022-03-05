@@ -4,18 +4,40 @@
 
 ## Requirements
 
-### Go 1.17.3
+### Octopus Deploy 3.x
+The Octopus REST API has breaking changes starting with 4.x, so this program only works with 3.x.
 
+### Go 1.17.3
 [Download Go](https://golang.org/dl/)
 
 ## How to Use
 
-Requires two environment variables pointing to the Octopus Deploy server.
+You need to specify the Octopus server to query, either in a config.yml file, in environment variables, or in command line parameters.
+
+config.yml
+
+```yaml
+---
+octopus:
+   address: https://samples.octopus.app
+   apikey: API-GUEST
+```
+```bash
+octoreport
+```
+
+environment variables
 
 ```bash
-export OCTOMON_OCTOPUS_ADDRESS=https://samples.octopus.app
-export OCTOMON_OCTOPUS_APIKEY=API-GUEST
-go run main.go
+export OCTOPUS_ADDRESS=https://samples.octopus.app
+export OCTOPUS_APIKEY=API-GUEST
+octoreport
+```
+
+command line parameters
+
+```bash
+octoreport octopus.address=https://samples.octopus.app octopus.apikey=API-GUEST
 ```
 
 ### Setting Log Level
@@ -25,13 +47,23 @@ export LOG_LEVEL=Debug
 ```
 
 ### Command Line Options
-| Option   | Description |
-| -------- | ----------- |
-| -access  | generate a report of all Octopus users and all their members |
-| -config  | display configuration loaded |
-| -info    | display information about this program |
-| -teams   | generate a report of all Octopus teams and their users |
-| -ver     | display the Octopus server version information |
+```bash
+octoreport -help
+```
+
+| Option         | Description |
+| -------------- | ----------- |
+| -help          | display usage of this program |
+| -info          | display information about this program |
+| -config        | display program configuration that was loaded |
+| -server        | display the Octopus server version information |
+| -report        | display a report of all teams and their users/roles/environments/project groups/projects |
+| -teams         | display all teams |
+| -users         | display all users |
+| -roles         | display all roles |
+| -environments  | display all environments |
+| -projectgroups | display all project groups |
+| -projects      | display all projects |
 
 ## API Documentation
 

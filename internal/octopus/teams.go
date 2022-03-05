@@ -2,10 +2,9 @@ package octopus
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
-// Teams holds data on the octopus teams
+// Teams holds octopus teams
 type Teams struct {
 	Items []*Team `json:"Items"`
 	PagedResults
@@ -17,34 +16,30 @@ type Team struct {
 	Name          string   `json:"Name"`
 	MemberUserIds []string `json:"MemberUserIds"`
 	// ExternalSecurityGroups []string `json:"ExternalSecurityGroups,omitempty"`
-	CanBeDeleted     bool   `json:"CanBeDeleted"`
-	CanBeRenamed     bool   `json:"CanBeRenamed"`
-	CanChangeRoles   bool   `json:"CanChangeRoles"`
-	CanChangeMembers bool   `json:"CanChangeMembers"`
-	SpaceId          string `json:"SpaceId"`
-	Description      string `json:"Description"`
+	UserRoleIds      []string `json:"UserRoleIds"`
+	ProjectIds       []string `json:"ProjectIds"`
+	EnvironmentIds   []string `json:"EnvironmentIds"`
+	TenantIds        []string `json:"TenantIds"`
+	TenantTags       []string `json:"TenantTags"`
+	ProjectGroupIds  []string `json:"ProjectGroupIds"`
+	CanBeDeleted     bool     `json:"CanBeDeleted"`
+	CanBeRenamed     bool     `json:"CanBeRenamed"`
+	CanChangeRoles   bool     `json:"CanChangeRoles"`
+	CanChangeMembers bool     `json:"CanChangeMembers"`
 }
 
-// GetTeams fetches the Octopus teams and related data
-func (c *Client) GetTeams() (*Teams, error) {
-	resp, err := c.DoGetRequest("teams")
+// GetAllTeams fetches all Octopus teams and related data
+func (c *Client) GetAllTeams() (*[]Team, error) {
+	resp, err := c.DoGetRequest("teams/all")
 	if err != nil {
 		return nil, err
 	}
 
-	teams := Teams{}
+	teams := []Team{}
 	err = json.NewDecoder(resp.Body).Decode(&teams)
 	if err != nil {
 		return nil, err
 	}
 
 	return &teams, nil
-}
-
-func (teams *Teams) Print() {
-	for _, t := range teams.Items {
-		fmt.Println("Name           : ", t.Name)
-		fmt.Println("Id             : ", t.ID)
-		fmt.Println("Members        : ", FormatStringList(t.MemberUserIds))
-	}
 }

@@ -24,9 +24,6 @@ func (c *Client) DoGetRequestParms(api string, queryParams map[string]string) (*
 	for k, v := range queryParams {
 		q.Add(k, v)
 	}
-	q.Add("skip", "0")
-	q.Add("take", "2147483647")
-
 	req.URL.RawQuery = q.Encode()
 
 	// HTTP request header required to make Octopus Deploy API calls

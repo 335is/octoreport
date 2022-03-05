@@ -5,8 +5,6 @@ import (
 )
 
 // Config holds our configuration settings
-//	OCTOREPORT_OCTOPUS_ADDRESS
-//	OCTOREPORT_OCTOPUS_APIKEY
 type Config struct {
 	Octopus *Octopus `yaml:"octopus"`
 }
