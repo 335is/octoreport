@@ -4,12 +4,6 @@ import (
 	"encoding/json"
 )
 
-// ProjectGroups holds the project groups
-type ProjectGroups struct {
-	Items        []*ProjectGroup `json:"Items"`
-	PagedResults PagedResults
-}
-
 // ProjectGroup describes a project group
 type ProjectGroup struct {
 	ID                string   `json:"Id"`
@@ -20,17 +14,18 @@ type ProjectGroup struct {
 }
 
 // GetProjectGroups gets all Octopus project groups
-func (c *Client) GetAllProjectGroups() (*[]ProjectGroup, error) {
+func (c *Client) GetAllProjectGroups() ([]ProjectGroup, error) {
+	projectGroups := []ProjectGroup{}
+
 	resp, err := c.DoGetRequest("projectgroups/all")
 	if err != nil {
-		return nil, err
+		return projectGroups, err
 	}
 
-	groups := []ProjectGroup{}
-	err = json.NewDecoder(resp.Body).Decode(&groups)
+	err = json.NewDecoder(resp.Body).Decode(&projectGroups)
 	if err != nil {
-		return nil, err
+		return projectGroups, err
 	}
 
-	return &groups, nil
+	return projectGroups, nil
 }

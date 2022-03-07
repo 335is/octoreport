@@ -62,8 +62,9 @@ octoreport -help
 | -users         | display all users |
 | -roles         | display all user roles |
 | -environments  | display all environments |
-| -projectgroups | display all project groups |
 | -projects      | display all projects |
+| -projectgroups | display all project groups |
+| -tenants       | display all tenants |
 | -channels      | display all channels |
 | -feeds         | display all feeds |
 | -lifecycles    | display all lifecycles |
@@ -96,8 +97,9 @@ Hit these URLs in your browser to test access to the Octopus Deploy server.
 [Get Users](https://samples.octopus.app/api/users?apikey=API-GUEST)
 [Get UserRoles](https://samples.octopus.app/api/userroles?apikey=API-GUEST)
 [Get Environments](https://samples.octopus.app/api/environments?apikey=API-GUEST)
-[Get Projects](https://samples.octopus.app/api/projectgroups?apikey=API-GUEST)
 [Get Projects](https://samples.octopus.app/api/projects?apikey=API-GUEST)
+[Get Project Groups](https://samples.octopus.app/api/projectgroups?apikey=API-GUEST)
+[Get Tenants](https://samples.octopus.app/api/tenants?apikey=API-GUEST)
 [Get Channels](https://samples.octopus.app/api/channels?apikey=API-GUEST)
 [Get Feeds](https://samples.octopus.app/api/feeds?apikey=API-GUEST)
 [Get Lifecycles](https://samples.octopus.app/api/lifecycles?apikey=API-GUEST)

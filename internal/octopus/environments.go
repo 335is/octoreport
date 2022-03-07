@@ -4,12 +4,6 @@ import (
 	"encoding/json"
 )
 
-// Environments holds a list of Environments
-type Environments struct {
-	Items        []*Environment `json:"Items"`
-	PagedResults PagedResults
-}
-
 // Environment describes an octopus deployment environment, such as dev, test, prod
 type Environment struct {
 	ID                         string `json:"Id"`
@@ -30,17 +24,17 @@ type Extension struct {
 }
 
 // GetAllEnvironments fetches the Octopus environments
-func (c *Client) GetAllEnvironments() (*[]Environment, error) {
+func (c *Client) GetAllEnvironments() ([]Environment, error) {
+	environments := []Environment{}
 	resp, err := c.DoGetRequest("environments/all")
 	if err != nil {
-		return nil, err
+		return environments, err
 	}
 
-	envs := []Environment{}
-	err = json.NewDecoder(resp.Body).Decode(&envs)
+	err = json.NewDecoder(resp.Body).Decode(&environments)
 	if err != nil {
-		return nil, err
+		return environments, err
 	}
 
-	return &envs, nil
+	return environments, nil
 }

@@ -4,14 +4,14 @@ import (
 	"encoding/json"
 )
 
-// Feed describes a feed
-type Feed struct {
+// Tenant describes a feed
+type Tenant struct {
 	ID                                string   `json:"Id"`
 	Name                              string   `json:"Name"`
-	FeedType                          string   `json:"FeedType"`
+	TenantType                        string   `json:"TenantType"`
 	ApiVersion                        string   `json:"ApiVersion"`
 	RegistryPath                      string   `json:"RegistryPath"`
-	FeedUrl                           string   `json:"FeedUrl"`
+	TenantUrl                         string   `json:"TenantUrl"`
 	Username                          string   `json:"Username"`
 	Password                          string   `json:"Password"`
 	PackageAcquisitionLocationOptions []string `json:"PackageAcquisitionLocationOptions"`
@@ -20,19 +20,19 @@ type Feed struct {
 	LastModifiedBy                    string   `json:"LastModifiedBy"`
 }
 
-// GetFeeds gets all Octopus feeds
-func (c *Client) GetAllFeeds() ([]Feed, error) {
-	feeds := []Feed{}
+// GetTenants gets all Octopus tenants
+func (c *Client) GetAllTenants() ([]Tenant, error) {
+	tenants := []Tenant{}
 
-	resp, err := c.DoGetRequest("feeds/all")
+	resp, err := c.DoGetRequest("tenants/all")
 	if err != nil {
-		return feeds, err
+		return tenants, err
 	}
 
-	err = json.NewDecoder(resp.Body).Decode(&feeds)
+	err = json.NewDecoder(resp.Body).Decode(&tenants)
 	if err != nil {
-		return feeds, err
+		return tenants, err
 	}
 
-	return feeds, nil
+	return tenants, nil
 }

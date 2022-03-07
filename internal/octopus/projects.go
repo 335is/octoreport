@@ -4,12 +4,6 @@ import (
 	"encoding/json"
 )
 
-// Projects holds the projects
-type Projects struct {
-	Items        []*Project `json:"Items"`
-	PagedResults PagedResults
-}
-
 // Project describes a project
 type Project struct {
 	ID                  string `json:"Id"`
@@ -23,17 +17,18 @@ type Project struct {
 }
 
 // GetAllProjects gets all Octopus projects
-func (c *Client) GetAllProjects() (*[]Project, error) {
+func (c *Client) GetAllProjects() ([]Project, error) {
+	projects := []Project{}
+
 	resp, err := c.DoGetRequest("projects/all")
 	if err != nil {
-		return nil, err
+		return projects, err
 	}
 
-	projects := []Project{}
 	err = json.NewDecoder(resp.Body).Decode(&projects)
 	if err != nil {
-		return nil, err
+		return projects, err
 	}
 
-	return &projects, nil
+	return projects, nil
 }

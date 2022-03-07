@@ -4,12 +4,6 @@ import (
 	"encoding/json"
 )
 
-// Users holds metrics on the deployment tasks
-type Users struct {
-	Items        []*User `json:"Items"`
-	PagedResults PagedResults
-}
-
 // User describes a deployment task, either running or not
 type User struct {
 	ID                  string `json:"Id"`
@@ -23,17 +17,18 @@ type User struct {
 }
 
 // GetUsers gets all Octopus users
-func (c *Client) GetAllUsers() (*[]User, error) {
+func (c *Client) GetAllUsers() ([]User, error) {
+	users := []User{}
+
 	resp, err := c.DoGetRequest("users/all")
 	if err != nil {
-		return nil, err
+		return users, err
 	}
 
-	users := []User{}
 	err = json.NewDecoder(resp.Body).Decode(&users)
 	if err != nil {
-		return nil, err
+		return users, err
 	}
 
-	return &users, nil
+	return users, nil
 }

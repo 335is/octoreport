@@ -4,12 +4,6 @@ import (
 	"encoding/json"
 )
 
-// Lifecycles holds lifecycles
-type Lifecycles struct {
-	Items        []*Lifecycle `json:"Items"`
-	PagedResults PagedResults
-}
-
 // Lifecycle describes a lifecycle
 type Lifecycle struct {
 	ID                      string          `json:"Id"`
@@ -38,17 +32,18 @@ type RetentionPolicy struct {
 }
 
 // GetLifecycles gets all Octopus lifecycles
-func (c *Client) GetAllLifecycles() (*[]Lifecycle, error) {
+func (c *Client) GetAllLifecycles() ([]Lifecycle, error) {
+	lifecycles := []Lifecycle{}
+
 	resp, err := c.DoGetRequest("lifecycles/all")
 	if err != nil {
-		return nil, err
+		return lifecycles, err
 	}
 
-	lifecycles := []Lifecycle{}
 	err = json.NewDecoder(resp.Body).Decode(&lifecycles)
 	if err != nil {
-		return nil, err
+		return lifecycles, err
 	}
 
-	return &lifecycles, nil
+	return lifecycles, nil
 }

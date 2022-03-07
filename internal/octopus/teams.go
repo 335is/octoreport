@@ -4,12 +4,6 @@ import (
 	"encoding/json"
 )
 
-// Teams holds octopus teams
-type Teams struct {
-	Items []*Team `json:"Items"`
-	PagedResults
-}
-
 // Team describes a team of users
 type Team struct {
 	ID            string   `json:"Id"`
@@ -29,17 +23,18 @@ type Team struct {
 }
 
 // GetAllTeams fetches all Octopus teams and related data
-func (c *Client) GetAllTeams() (*[]Team, error) {
+func (c *Client) GetAllTeams() ([]Team, error) {
+	teams := []Team{}
+
 	resp, err := c.DoGetRequest("teams/all")
 	if err != nil {
-		return nil, err
+		return teams, err
 	}
 
-	teams := []Team{}
 	err = json.NewDecoder(resp.Body).Decode(&teams)
 	if err != nil {
-		return nil, err
+		return teams, err
 	}
 
-	return &teams, nil
+	return teams, nil
 }

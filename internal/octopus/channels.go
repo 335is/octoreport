@@ -6,7 +6,7 @@ import (
 
 // Channels holds octopus channels
 type Channels struct {
-	Items []*Channel `json:"Items"`
+	Items []Channel `json:"Items"`
 	PagedResults
 }
 
@@ -24,17 +24,23 @@ type Channel struct {
 }
 
 // GetAllChannels fetches all Octopus channels and related data
-func (c *Client) GetAllChannels() (*[]Channel, error) {
-	resp, err := c.DoGetRequest("channels/all")
-	if err != nil {
-		return nil, err
-	}
-
+//	note: channels does not support the /all route (it does in newer Octopus versions)
+func (c *Client) GetAllChannels() ([]Channel, error) {
 	channels := []Channel{}
-	err = json.NewDecoder(resp.Body).Decode(&channels)
+
+	resp, err := c.DoGetRequest("channels")
 	if err != nil {
-		return nil, err
+		return channels, err
 	}
 
-	return &channels, nil
+	chInfo := Channels{}
+	err = json.NewDecoder(resp.Body).Decode(&chInfo)
+	if err != nil {
+		return channels, err
+	}
+
+	ch := make([]Channel, len(chInfo.Items))
+	copy(ch, chInfo.Items)
+
+	return ch, nil
 }

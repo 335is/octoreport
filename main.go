@@ -15,7 +15,7 @@ import (
 const (
 	// AppName defines the prefix for any configuration environment variables, as in OCTOREPORT_OCTOPUS_ADDRESS
 	appName    = "octoreport"
-	appVersion = "0.0.1"
+	appVersion = "0.0.2"
 )
 
 var (
@@ -32,14 +32,15 @@ func main() {
 	info := flag.Bool("info", false, "display information about this program")
 	cfg := flag.Bool("config", false, "display program configuration that was loaded")
 	server := flag.Bool("server", false, "display the Octopus server information")
-	report := flag.Bool("report", false, "display a report of all teams and their users/roles/environments/project groups/projects")
+	report := flag.Bool("report", false, "display a report of all teams and their users/roles/environments/projects/project groups/tenants")
 	teams := flag.Bool("teams", false, "display all teams")
 	users := flag.Bool("users", false, "display all users")
 	roles := flag.Bool("roles", false, "display all user roles")
-	environments := flag.Bool("environments", false, "display all projects")
+	environments := flag.Bool("environments", false, "display all environments")
 	projectGroups := flag.Bool("projectgroups", false, "display all project groups")
 	projects := flag.Bool("projects", false, "display all projects")
-	channels := flag.Bool("channels", false, "display all projects")
+	tenants := flag.Bool("tenants", false, "display all tenants")
+	channels := flag.Bool("channels", false, "display all channels")
 	feeds := flag.Bool("feeds", false, "display all feeds")
 	lifecycles := flag.Bool("lifecycles", false, "display all lifecycles")
 	flag.Parse()
@@ -84,12 +85,16 @@ func main() {
 		octopus.PrintEnvironments(client)
 	}
 
+	if *projects {
+		octopus.PrintProjects(client)
+	}
+
 	if *projectGroups {
 		octopus.PrintProjectGroups(client)
 	}
 
-	if *projects {
-		octopus.PrintProjects(client)
+	if *tenants {
+		octopus.PrintTenants(client)
 	}
 
 	if *channels {

@@ -4,12 +4,6 @@ import (
 	"encoding/json"
 )
 
-// UserRoles is a list of UserRoles
-type UserRoles struct {
-	Items []*UserRole `json:"Items"`
-	PagedResults
-}
-
 // UserRole is the role that binds users and teams
 type UserRole struct {
 	ID          string `json:"Id"`
@@ -18,17 +12,18 @@ type UserRole struct {
 }
 
 // GetUserRoles fetches the Octopus roles
-func (c *Client) GetAllUserRoles() (*[]UserRole, error) {
+func (c *Client) GetAllUserRoles() ([]UserRole, error) {
+	userRoles := []UserRole{}
+
 	resp, err := c.DoGetRequest("userroles/all")
 	if err != nil {
-		return nil, err
+		return userRoles, err
 	}
 
-	roles := []UserRole{}
-	err = json.NewDecoder(resp.Body).Decode(&roles)
+	err = json.NewDecoder(resp.Body).Decode(&userRoles)
 	if err != nil {
-		return nil, err
+		return userRoles, err
 	}
 
-	return &roles, nil
+	return userRoles, nil
 }
