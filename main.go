@@ -39,6 +39,9 @@ func main() {
 	environments := flag.Bool("environments", false, "display all projects")
 	projectGroups := flag.Bool("projectgroups", false, "display all project groups")
 	projects := flag.Bool("projects", false, "display all projects")
+	channels := flag.Bool("channels", false, "display all projects")
+	feeds := flag.Bool("feeds", false, "display all feeds")
+	lifecycles := flag.Bool("lifecycles", false, "display all lifecycles")
 	flag.Parse()
 
 	if *help {
@@ -87,5 +90,17 @@ func main() {
 
 	if *projects {
 		octopus.PrintProjects(client)
+	}
+
+	if *channels {
+		octopus.PrintChannels(client)
+	}
+
+	if *feeds {
+		octopus.PrintFeeds(client)
+	}
+
+	if *lifecycles {
+		octopus.PrintLifecycles(client)
 	}
 }

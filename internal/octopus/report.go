@@ -203,6 +203,26 @@ func PrintUserRoles(octo *Client) {
 	}
 }
 
+// PrintEnvironments displays the deployment environments
+func PrintEnvironments(octo *Client) {
+	environments, err := octo.GetAllEnvironments()
+	if err != nil {
+		log.Infof(err.Error())
+	}
+
+	fmt.Println("----- Octopus Environments List -----")
+	defer fmt.Println("----- End -----")
+
+	if environments == nil {
+		fmt.Println("No environments found")
+		return
+	}
+
+	for _, e := range *environments {
+		fmt.Printf("%s (%s)\n", e.Name, e.ID)
+	}
+}
+
 // PrintProjectGroups displays the project groups
 func PrintProjectGroups(octo *Client) {
 	projectGroups, err := octo.GetAllProjectGroups()
@@ -243,22 +263,62 @@ func PrintProjects(octo *Client) {
 	}
 }
 
-// PrintEnvironments displays the deployment environments
-func PrintEnvironments(octo *Client) {
-	environments, err := octo.GetAllEnvironments()
+// PrintChannels displays the channels
+func PrintChannels(octo *Client) {
+	channels, err := octo.GetAllChannels()
 	if err != nil {
 		log.Infof(err.Error())
 	}
 
-	fmt.Println("----- Octopus Environments List -----")
+	fmt.Println("----- Octopus Channels List -----")
 	defer fmt.Println("----- End -----")
 
-	if environments == nil {
-		fmt.Println("No environments found")
+	if channels == nil {
+		fmt.Println("No Channels found")
 		return
 	}
 
-	for _, e := range *environments {
-		fmt.Printf("%s (%s)\n", e.Name, e.ID)
+	for _, p := range *channels {
+		fmt.Printf("%s (%s)\n", p.Name, p.ID)
+	}
+}
+
+// PrintFeeds displays the feeds
+func PrintFeeds(octo *Client) {
+	feeds, err := octo.GetAllFeeds()
+	if err != nil {
+		log.Infof(err.Error())
+	}
+
+	fmt.Println("----- Octopus Feeds List -----")
+	defer fmt.Println("----- End -----")
+
+	if feeds == nil {
+		fmt.Println("No Feeds found")
+		return
+	}
+
+	for _, p := range *feeds {
+		fmt.Printf("%s (%s)\n", p.Name, p.ID)
+	}
+}
+
+// PrintLifecycles displays the projects
+func PrintLifecycles(octo *Client) {
+	lifecycles, err := octo.GetAllLifecycles()
+	if err != nil {
+		log.Infof(err.Error())
+	}
+
+	fmt.Println("----- Octopus Lifecycles List -----")
+	defer fmt.Println("----- End -----")
+
+	if lifecycles == nil {
+		fmt.Println("No Lifecycles found")
+		return
+	}
+
+	for _, p := range *lifecycles {
+		fmt.Printf("%s (%s)\n", p.Name, p.ID)
 	}
 }

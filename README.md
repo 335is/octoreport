@@ -60,10 +60,13 @@ octoreport -help
 | -report        | display a report of all teams and their users/roles/environments/project groups/projects |
 | -teams         | display all teams |
 | -users         | display all users |
-| -roles         | display all roles |
+| -roles         | display all user roles |
 | -environments  | display all environments |
 | -projectgroups | display all project groups |
 | -projects      | display all projects |
+| -channels      | display all channels |
+| -feeds         | display all feeds |
+| -lifecycles    | display all lifecycles |
 
 ## API Documentation
 
@@ -88,14 +91,13 @@ The following credentials are needed
 
 Hit these URLs in your browser to test access to the Octopus Deploy server.
 
-[Server Information](https://samples.octopus.app/api?apikey=API-GUEST)
-
-[Get Users](https://samples.octopus.app/api/users?apikey=API-GUEST)
-
+[Get Server Information](https://samples.octopus.app/api?apikey=API-GUEST)
 [Get Teams](https://samples.octopus.app/api/teams?apikey=API-GUEST)
-
-[Get ScopedUserRoles](https://samples.octopus.app/api/teams/teams-everyone/scopeduserroles?apikey=API-GUEST)
-
+[Get Users](https://samples.octopus.app/api/users?apikey=API-GUEST)
+[Get UserRoles](https://samples.octopus.app/api/userroles?apikey=API-GUEST)
 [Get Environments](https://samples.octopus.app/api/environments?apikey=API-GUEST)
-
+[Get Projects](https://samples.octopus.app/api/projectgroups?apikey=API-GUEST)
 [Get Projects](https://samples.octopus.app/api/projects?apikey=API-GUEST)
+[Get Channels](https://samples.octopus.app/api/channels?apikey=API-GUEST)
+[Get Feeds](https://samples.octopus.app/api/feeds?apikey=API-GUEST)
+[Get Lifecycles](https://samples.octopus.app/api/lifecycles?apikey=API-GUEST)
