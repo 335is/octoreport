@@ -15,7 +15,7 @@ import (
 const (
 	// AppName defines the prefix for any configuration environment variables, as in OCTOREPORT_OCTOPUS_ADDRESS
 	appName    = "octoreport"
-	appVersion = "0.0.2"
+	appVersion = "0.0.3"
 )
 
 var (
