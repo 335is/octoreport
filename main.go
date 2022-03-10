@@ -43,6 +43,8 @@ func main() {
 	channels := flag.Bool("channels", false, "display all channels")
 	feeds := flag.Bool("feeds", false, "display all feeds")
 	lifecycles := flag.Bool("lifecycles", false, "display all lifecycles")
+	machines := flag.Bool("machines", false, "display all machines")
+	machineroles := flag.Bool("machineroles", false, "display all machineroles")
 	flag.Parse()
 
 	if *help {
@@ -107,5 +109,13 @@ func main() {
 
 	if *lifecycles {
 		octopus.PrintLifecycles(client)
+	}
+
+	if *machines {
+		octopus.PrintMachines(client)
+	}
+
+	if *machineroles {
+		octopus.PrintMachineRoles(client)
 	}
 }

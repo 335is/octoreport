@@ -68,6 +68,8 @@ octoreport -help
 | -channels      | display all channels |
 | -feeds         | display all feeds |
 | -lifecycles    | display all lifecycles |
+| -machines      | display all machines |
+| -machineroles  | display all machineroles |
 
 ## API Documentation
 
@@ -92,14 +94,16 @@ The following credentials are needed
 
 Hit these URLs in your browser to test access to the Octopus Deploy server.
 
-[Get Server Information](https://samples.octopus.app/api?apikey=API-GUEST)
-[Get Teams](https://samples.octopus.app/api/teams?apikey=API-GUEST)
-[Get Users](https://samples.octopus.app/api/users?apikey=API-GUEST)
-[Get UserRoles](https://samples.octopus.app/api/userroles?apikey=API-GUEST)
-[Get Environments](https://samples.octopus.app/api/environments?apikey=API-GUEST)
-[Get Projects](https://samples.octopus.app/api/projects?apikey=API-GUEST)
-[Get Project Groups](https://samples.octopus.app/api/projectgroups?apikey=API-GUEST)
-[Get Tenants](https://samples.octopus.app/api/tenants?apikey=API-GUEST)
-[Get Channels](https://samples.octopus.app/api/channels?apikey=API-GUEST)
-[Get Feeds](https://samples.octopus.app/api/feeds?apikey=API-GUEST)
-[Get Lifecycles](https://samples.octopus.app/api/lifecycles?apikey=API-GUEST)
+[Get Server Information](https://samples.octopus.app/api?apikey=API-GUEST)  
+[Get Teams](https://samples.octopus.app/api/teams?apikey=API-GUEST)  
+[Get Users](https://samples.octopus.app/api/users?apikey=API-GUEST)  
+[Get UserRoles](https://samples.octopus.app/api/userroles?apikey=API-GUEST)  
+[Get Environments](https://samples.octopus.app/api/environments?apikey=API-GUEST)  
+[Get Projects](https://samples.octopus.app/api/projects?apikey=API-GUEST)  
+[Get Project Groups](https://samples.octopus.app/api/projectgroups?apikey=API-GUEST)  
+[Get Tenants](https://samples.octopus.app/api/tenants?apikey=API-GUEST)  
+[Get Channels](https://samples.octopus.app/api/channels?apikey=API-GUEST)  
+[Get Feeds](https://samples.octopus.app/api/feeds?apikey=API-GUEST)  
+[Get Lifecycles](https://samples.octopus.app/api/lifecycles?apikey=API-GUEST)  
+[Get Machines](https://samples.octopus.app/api/machines?apikey=API-GUEST)  
+[Get MachineRoles](https://samples.octopus.app/api/machineroles/all?apikey=API-GUEST)  

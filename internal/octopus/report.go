@@ -138,7 +138,7 @@ func PrintTeamReport(octo *Client) {
 	}
 }
 
-// PrintTeams displays just the team names
+// PrintTeams displays the teams
 func PrintTeams(octo *Client) {
 	teams, err := octo.GetAllTeams()
 	if err != nil {
@@ -158,7 +158,7 @@ func PrintTeams(octo *Client) {
 	}
 }
 
-// PrintUsers displays the teams and their users
+// PrintUsers displays the users
 func PrintUsers(octo *Client) {
 	users, err := octo.GetAllUsers()
 	if err != nil {
@@ -218,7 +218,7 @@ func PrintEnvironments(octo *Client) {
 	}
 }
 
-// PrintProjects displays the projects
+// PrintProjects displays the deployment projects
 func PrintProjects(octo *Client) {
 	projects, err := octo.GetAllProjects()
 	if err != nil {
@@ -238,7 +238,7 @@ func PrintProjects(octo *Client) {
 	}
 }
 
-// PrintProjectGroups displays the project groups
+// PrintProjectGroups displays the deployment project groups
 func PrintProjectGroups(octo *Client) {
 	projectGroups, err := octo.GetAllProjectGroups()
 	if err != nil {
@@ -318,7 +318,7 @@ func PrintFeeds(octo *Client) {
 	}
 }
 
-// PrintLifecycles displays the projects
+// PrintLifecycles displays the lifecycles
 func PrintLifecycles(octo *Client) {
 	lifecycles, err := octo.GetAllLifecycles()
 	if err != nil {
@@ -335,5 +335,45 @@ func PrintLifecycles(octo *Client) {
 
 	for _, l := range lifecycles {
 		fmt.Printf("%s (%s)\n", l.Name, l.ID)
+	}
+}
+
+// PrintMachines displays the machines
+func PrintMachines(octo *Client) {
+	machines, err := octo.GetAllMachines()
+	if err != nil {
+		log.Infof(err.Error())
+	}
+
+	fmt.Println("----- Octopus Machines List -----")
+	defer fmt.Println("----- End -----")
+
+	if len(machines) == 0 {
+		fmt.Println("No Machines found")
+		return
+	}
+
+	for _, l := range machines {
+		fmt.Printf("%s (%s)\n", l.Name, l.ID)
+	}
+}
+
+// PrintMachineRoles displays the machines
+func PrintMachineRoles(octo *Client) {
+	machineroles, err := octo.GetAllMachineRoles()
+	if err != nil {
+		log.Infof(err.Error())
+	}
+
+	fmt.Println("----- Octopus Machine Roles List -----")
+	defer fmt.Println("----- End -----")
+
+	if len(machineroles) == 0 {
+		fmt.Println("No Machine Roles found")
+		return
+	}
+
+	for _, mr := range machineroles {
+		fmt.Printf("%s\n", mr)
 	}
 }
