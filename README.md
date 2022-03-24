@@ -10,6 +10,12 @@ The Octopus REST API has breaking changes starting with 4.x, so this program onl
 ### Go 1.17.3
 [Download Go](https://golang.org/dl/)
 
+## How to Build
+```bash
+go build -o octoreport.exe main.go
+octoreport.exe
+```
+
 ## How to Use
 
 You need to specify the Octopus server to query, either in a config.yml file, in environment variables, or in command line parameters.
@@ -17,7 +23,6 @@ You need to specify the Octopus server to query, either in a config.yml file, in
 config.yml
 
 ```yaml
----
 octopus:
    address: https://samples.octopus.app
    apikey: API-GUEST

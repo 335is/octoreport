@@ -1,4 +1,4 @@
-module github.com/335is/octomon
+module github.com/335is/octoreport
 
 go 1.15
 
