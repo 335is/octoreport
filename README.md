@@ -62,6 +62,7 @@ octoreport -help
 | -info          | display information about this program |
 | -config        | display program configuration that was loaded |
 | -server        | display the Octopus server version information |
+| -appsec        | display a CSV format report of users, teams, environments, roles |
 | -report        | display a report of all teams and their users/roles/environments/project groups/projects |
 | -teams         | display all teams |
 | -users         | display all users |

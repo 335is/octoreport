@@ -15,7 +15,7 @@ import (
 const (
 	// AppName defines the prefix for any configuration environment variables, as in OCTOREPORT_OCTOPUS_ADDRESS
 	appName    = "octoreport"
-	appVersion = "0.0.3"
+	appVersion = "0.0.4"
 )
 
 var (
@@ -32,6 +32,7 @@ func main() {
 	info := flag.Bool("info", false, "display information about this program")
 	cfg := flag.Bool("config", false, "display program configuration that was loaded")
 	server := flag.Bool("server", false, "display the Octopus server information")
+	appsec := flag.Bool("appsec", false, "display a CSV format report of users, teams, environments, roles")
 	report := flag.Bool("report", false, "display a report of all teams and their users/roles/environments/projects/project groups/tenants")
 	teams := flag.Bool("teams", false, "display all teams")
 	users := flag.Bool("users", false, "display all users")
@@ -65,6 +66,10 @@ func main() {
 
 	if *server {
 		octopus.PrintServerReport(client)
+	}
+
+	if *appsec {
+		octopus.PrintAppsecReport(client)
 	}
 
 	if *report {

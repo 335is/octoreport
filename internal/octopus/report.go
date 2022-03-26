@@ -2,6 +2,7 @@ package octopus
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/335is/log"
 )
@@ -13,6 +14,93 @@ func PrintServerReport(octo *Client) {
 		log.Infof(err.Error())
 	}
 	fmt.Println(ver)
+}
+
+// PrintAppsecReport prints a CSV format report with just user roles, environments, teams.
+func PrintAppsecReport(octo *Client) {
+	teams, err := octo.GetAllTeams()
+	if err != nil {
+		log.Infof(err.Error())
+	}
+
+	users, err := octo.GetAllUsers()
+	if err != nil {
+		log.Infof(err.Error())
+	}
+
+	environments, err := octo.GetAllEnvironments()
+	if err != nil {
+		log.Infof(err.Error())
+	}
+
+	userRoles, err := octo.GetAllUserRoles()
+	if err != nil {
+		log.Infof(err.Error())
+	}
+
+	// bail out if no teams or users
+	if len(teams) == 0 {
+		fmt.Println("No teams found")
+		return
+	}
+	if len(users) == 0 {
+		fmt.Println("No users found")
+		return
+	}
+
+	// display each team's properties in the folling format
+	//	username, team, {environment list}, {user role list}
+	for _, t := range teams {
+
+		// users
+		for _, tu := range t.MemberUserIds {
+			for _, u := range users {
+				if tu == u.ID {
+					// display user, team
+					fmt.Printf("%s,%s", u.DisplayName, t.Name)
+
+					var sb strings.Builder
+					first := true
+
+					// display list of environments in curly braces
+					for _, eid := range t.EnvironmentIds {
+						for _, e := range environments {
+							if eid == e.ID {
+								if !first {
+									sb.WriteString(",")
+								}
+								first = false
+								sb.WriteString(e.Name)
+								break
+							}
+						}
+					}
+					fmt.Printf(",{%s}", sb.String())
+
+					// display list of user roles in curly braces
+					sb.Reset()
+					first = true
+					for _, ur := range t.UserRoleIds {
+						for _, r := range userRoles {
+							if ur == r.ID {
+								if !first {
+									sb.WriteString(",")
+								}
+								first = false
+								sb.WriteString(r.Name)
+								break
+							}
+						}
+					}
+					fmt.Printf(",{%s}", sb.String())
+
+					break
+				}
+			}
+
+			fmt.Printf("\n")
+		}
+	}
 }
 
 // TeamReport displays each team, its users, roles, environments, projects, project groups, tenants
