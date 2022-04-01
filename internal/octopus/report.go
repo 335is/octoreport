@@ -52,6 +52,9 @@ func PrintAppsecReport(octo *Client) {
 	//	username, team, {environment list}, {user role list}
 	for _, t := range teams {
 
+		// Headings
+		fmt.Printf("Member,Team,Environments,Roles\n")
+
 		// users
 		for _, tu := range t.MemberUserIds {
 			for _, u := range users {
