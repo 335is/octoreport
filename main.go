@@ -8,8 +8,8 @@ import (
 	uuid "github.com/satori/go.uuid"
 
 	"github.com/335is/log"
+	"github.com/335is/octopus"
 	"github.com/335is/octoreport/internal/config"
-	"github.com/335is/octoreport/internal/octopus"
 )
 
 const (

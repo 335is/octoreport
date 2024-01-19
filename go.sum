@@ -2,6 +2,8 @@ github.com/335is/config v0.0.0-20211107023905-c5d762539af5 h1:8z3Gzh/qkJtuuMH7G4
 github.com/335is/config v0.0.0-20211107023905-c5d762539af5/go.mod h1:ArofeemwATHTFt/3hey1IQ2Usb3pIoB0hfRweND+vbU=
 github.com/335is/log v0.0.0-20210126231334-ff6b9b9355ac h1:PNESaO7dqXg5jCKIpeXJSZF2TyYMf7qCQ3sPU8R9ZvE=
 github.com/335is/log v0.0.0-20210126231334-ff6b9b9355ac/go.mod h1:0PKM0FozOaousUNlMC0rm4EGCEJdegfBdgdQXBPWJyc=
+github.com/335is/octopus v0.0.0-20240119234420-b031a5844100 h1:TtkTbV6IbWn4/7JKof3RFZovpbDkzUevhPffirnre2s=
+github.com/335is/octopus v0.0.0-20240119234420-b031a5844100/go.mod h1:5kEu3wJeUUp59c97X+sAsKTGXnvZ7EETquCg9WBrZyg=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/creasty/defaults v1.5.2 h1:/VfB6uxpyp6h0fr7SPp7n8WJBoV8jfxQXPCnkVSjyls=
 github.com/creasty/defaults v1.5.2/go.mod h1:FPZ+Y0WNrbqOVw+c6av63eyHUAl6pMHZwqLPvXUZGfY=
